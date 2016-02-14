@@ -59,9 +59,12 @@ int bloom_check(bloom_filter_t *B, key_t k) {
     for (int i=0; i<N_HASHES; i++) {
         index_t to_get = hash_combo(B, k, i);
         //printf("%d %d \n", to_get, get_bit(B, to_get));
-        checked = checked + get_bit(B, to_get);
+        checked += get_bit(B, to_get);
     }
-    return checked;
+    if (checked == N_HASHES) {
+        return 1;
+    }
+    return 0;
 }
 
 void bloom_add(bloom_filter_t *B, key_t k) {
@@ -84,6 +87,9 @@ int count_bits(bloom_filter_t *B) {
 int *random_nums(int num) {
     printf("HERE\n");
 
+    int seed = 124091890;
+    srand(seed);
+    
     int *rands = malloc(sizeof(int) * num);
     for (int i = 0; i<num; i++) {
         rands[i] = rand() % 1000000;
