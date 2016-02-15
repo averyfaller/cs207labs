@@ -4,7 +4,6 @@ void set_bit(bloom_filter_t *B, index_t i) {
     index_t correct_int = B->table[i >> 6];
     index_t pos = i % 64;
     index_t val = (index_t)1 << pos;
-    //printf("THE set bit %d %d %llu\n", i >> 6, pos, val);
     B->table[i >> 6] = correct_int | val;
 }
 
@@ -12,8 +11,6 @@ index_t get_bit(bloom_filter_t *B, index_t i) {
     index_t correct_int = B->table[i >> 6];
     index_t pos = i % 64;
     index_t val = (index_t)1 << pos;
-    //printf("The get bit %d %d %llu\n", i >> 6, pos, val);
-
     return (correct_int & val) >> pos;
 }
 
@@ -73,6 +70,7 @@ void bloom_add(bloom_filter_t *B, key_t k) {
         set_bit(B, to_set);
         //printf("Setting a bit %d %d\n", to_set, get_bit(B, to_set));
     }
+    B->count = B->count + 1;
     return;
 }
 
