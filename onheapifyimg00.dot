@@ -1,0 +1,28 @@
+
+    digraph G {
+    nodesep=0.3;
+    ranksep=0.2;
+    margin=0.1;
+    node [shape=circle];
+    edge [arrowsize=0.8];
+    1 -> 2[side=left];
+1 -> 3;
+2 -> 4[side=left];
+2 -> 5;
+3 -> 6[side=left];
+3 -> 7;
+4 -> 8[side=left];
+4 -> 9;
+5 -> 10[side=left];
+5 -> 11;
+1[label="1"]
+2[label="8"]
+3[label="5"]
+4[label="9"]
+5[label="23"]
+6[label="2"]
+7[label="45"]
+8[label="6"]
+9[label="7"]
+10[label="99"]
+11[label="-5"]}
